@@ -39,8 +39,16 @@ if ($permHelper) {
         if (!$GLOBALS['xoopsSecurity']->check()) {
             redirect_header(XOOPS_URL . '/', 3, $GLOBALS['xoopsSecurity']->getErrors());
         }
+        // Get the group input from the request
         $name   = $permHelper->defaultFieldName($permissionName, $permissionItemId);
         $groups = Request::getVar($name, [], 'POST');
+
+        // Ensure $groups is an array
+        if (!is_array($groups)) {
+            $groups = (array)$groups;
+        }
+
+        // Save the permission for the item
         $permHelper->savePermissionForItem($permissionName, $permissionItemId, $groups);
         xoops_result(_MA_XWHOOPS_FORM_PROCESSED, _MA_XWHOOPS_PERMISSION_FORM);
     }
