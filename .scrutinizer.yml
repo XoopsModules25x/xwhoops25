@@ -1,15 +1,19 @@
 # language: php
 build:
-  environment:
-    php: 8.0.11
   nodes:
-    tests: true
     analysis:
+      environment:
+        php: 8.4
+      tools:
+        php:
+          target_php_version: 8.4
+          min_php_version: 7.4
+          backwards_compatibility_checks: true
       dependencies:
         after:
-          # The following installs the most recent XOOPS CMS version, you might want
-          # to install a specific release tag or branch instead.
+          # Install the XOOPS CMS and tag module
           - git clone --depth=1 https://github.com/XOOPS/XoopsCore25
+          - git clone --depth=1 https://github.com/mambax7/tag
       project_setup:
         override: true
       tests:
@@ -18,3 +22,4 @@ build:
 filter:
   dependency_paths:
     - XoopsCore25/*
+    - tag/*
