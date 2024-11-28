@@ -1,24 +1,51 @@
 # language: php
 build:
   nodes:
-    analysis:
+    analysis-7.4:
       environment:
-        php: 8.4
-      tools:
-        php:
-          target_php_version: 8.4
-          min_php_version: 7.4
-          backwards_compatibility_checks: true
-      dependencies:
-        after:
-          # Install the XOOPS CMS and tag module
-          - git clone --depth=1 https://github.com/XOOPS/XoopsCore25
-          - git clone --depth=1 https://github.com/mambax7/tag
-      project_setup:
-        override: true
+        php: 7.4
       tests:
         override:
           - php-scrutinizer-run --enable-security-analysis
+    analysis-8.0:
+      environment:
+        php: 8.0
+      tests:
+        override:
+          - php-scrutinizer-run --enable-security-analysis
+    analysis-8.1:
+      environment:
+        php: 8.1
+      tests:
+        override:
+          - php-scrutinizer-run --enable-security-analysis
+    analysis-8.2:
+      environment:
+        php: 8.2
+      tests:
+        override:
+          - php-scrutinizer-run --enable-security-analysis
+    analysis-8.3:
+      environment:
+        php: 8.3
+      tests:
+        override:
+          - php-scrutinizer-run --enable-security-analysis
+    analysis-8.4:
+      environment:
+        php: 8.4
+      tests:
+        override:
+          - php-scrutinizer-run --enable-security-analysis
+
+dependencies:
+  after:
+    - git clone --depth=1 https://github.com/XOOPS/XoopsCore25
+    - git clone --depth=1 https://github.com/mambax7/tag
+
+project_setup:
+  override: true
+
 filter:
   dependency_paths:
     - XoopsCore25/*
