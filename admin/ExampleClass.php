@@ -10,7 +10,7 @@ class ExampleClass
         $this->msg = $msg;
     }
 
-    public function flawedMethod(): void
+    public function flawedMethod()
     {
         try {
             new \NoSuchClass($this->message);

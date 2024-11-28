@@ -26,8 +26,7 @@ class_exists('\Xmf\Module\Admin') || die('XMF is required.');
 
 global $xoopsModule;
 
-$thisModuleDir = \basename(\dirname(__DIR__));
-
-Language::load('main', $thisModuleDir);
+$moduleDirName = \basename(\dirname(__DIR__));
+Language::load('main', $moduleDirName);
 
 xoops_cp_header();

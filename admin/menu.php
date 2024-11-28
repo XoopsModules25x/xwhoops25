@@ -16,41 +16,43 @@
  */
 
 use Xmf\Language;
+use Xmf\Module\Admin;
 
 defined('XOOPS_ROOT_PATH') || die('XOOPS root path not defined');
 
-//xoops_loadLanguage('modinfo', 'xwhoops25');
-$thisModuleDir = \basename(\dirname(__DIR__));
-Language::load('main', $thisModuleDir);
+$moduleDirName = \basename(\dirname(__DIR__));
+Language::load('modinfo', $moduleDirName);
+Language::load('main', $moduleDirName);
+
 
 // get path to icons
 $pathIcon32 = '';
 if (class_exists('Xmf\Module\Admin', true)) {
-    $pathIcon32 = \Xmf\Module\Admin::menuIconPath('');
+    $pathIcon32 = Admin::menuIconPath('');
 }
 
 $adminmenu = [];
 // Index
 $adminmenu[] = [
     'title' => _MI_XWHOOPS_HOME,
-    'link'  => 'admin/index.php',
-    'icon'  => $pathIcon32 . 'home.png',
+    'link' => 'admin/index.php',
+    'icon' => $pathIcon32 . 'home.png',
 ];
 // Permissions
 $adminmenu[] = [
     'title' => _MI_XWHOOPS_PERMISSIONS,
-    'link'  => 'admin/permissions.php',
-    'icon'  => $pathIcon32 . 'permissions.png',
+    'link' => 'admin/permissions.php',
+    'icon' => $pathIcon32 . 'permissions.png',
 ];
 // Test
 $adminmenu[] = [
     'title' => _MI_XWHOOPS_EXAMPLE,
-    'link'  => 'admin/index.php?do=example',
-    'icon'  => $pathIcon32 . 'exec.png',
+    'link' => 'admin/index.php?do=example',
+    'icon' => $pathIcon32 . 'exec.png',
 ];
 // About
 $adminmenu[] = [
     'title' => _MI_XWHOOPS_ABOUT,
-    'link'  => 'admin/about.php',
-    'icon'  => $pathIcon32 . 'about.png',
+    'link' => 'admin/about.php',
+    'icon' => $pathIcon32 . 'about.png',
 ];

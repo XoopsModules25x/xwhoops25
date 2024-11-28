@@ -11,6 +11,7 @@
  */
 
 use Xmf\Module\Admin;
+use Xmf\Request;
 
 /**
  * @copyright 2019-2021 XOOPS Project (https://xoops.org)
@@ -29,7 +30,7 @@ $moduleAdmin->displayIndex();
 
 // example - bounces around and into an error
 // will show xWhoops25 page if user has permission
-$op = \Xmf\Request::getString('do');
+$op = Request::getString('do');
 if ('example' === $op) {
     require_once __DIR__ . '/ExampleClass.php';
     number1();
