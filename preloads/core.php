@@ -103,12 +103,12 @@ class Xwhoops25CorePreload extends \XoopsPreloadItem
     {
         $error = (null === $query['errno'] ? '' : $query['errno'] . ' ') . ($query['error'] ?? '');
         $queryTime = isset($query['query_time']) ? \sprintf('%0.6f', $query['query_time']) : '';
-        $queryKey = $count . ' - ' . $queryTime;
+        $queryKey = $count . ' - ' . ($queryTime ?: 'No Time');
 
         if (null !== $query['errno']) {
             $queryKey = $count . ' - Error';
         }
 
-        return \htmlentities($query['sql'], \ENT_QUOTES | \ENT_HTML5) . ' ' . $error;
+        return $queryKey . ': ' . \htmlentities($query['sql'], \ENT_QUOTES | \ENT_HTML5) . ' ' . $error;
     }
 }
